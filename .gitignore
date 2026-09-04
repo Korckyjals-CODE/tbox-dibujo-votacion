@@ -1,0 +1,14 @@
+# Firebase secrets / local config (keep example committed)
+firebase-config.js
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local helpers
+node_modules/
+.cache/
+*.log
