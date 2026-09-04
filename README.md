@@ -8,12 +8,13 @@ sus **3 dibujos favoritos** de Primaria del XXII Certamen de Dibujo Digital TBox
 
 ## URL del sitio
 
-Cuando Pages esté activo:
+Pages ya está configurado (branch `main`, carpeta `/`).
 
-`https://korckyjals-code.github.io/tbox-dibujo-votacion/`
+- Sitio: `http://korckyjals-code.com/tbox-dibujo-votacion/`
+- Alternativa GitHub: `https://korckyjals-code.github.io/tbox-dibujo-votacion/`
+- Admin: `…/admin.html` (también `#admin` redirige al panel)
 
-Admin: `https://korckyjals-code.github.io/tbox-dibujo-votacion/admin.html`  
-(también `#admin` redirige al panel).
+Tras fusionar este PR a `main`, Pages se actualiza solo en 1–2 minutos.
 
 ## Activar GitHub Pages
 
