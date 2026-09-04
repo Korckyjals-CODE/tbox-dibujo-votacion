@@ -96,7 +96,9 @@ function updateStickyBar() {
         ? "Voto enviado"
         : !state.votingOpen
           ? "Votación cerrada"
-          : `Enviar voto (${count}/${cfg.maxPicks})`;
+          : !state.firebaseOk
+            ? "Falta configurar Firebase"
+            : `Enviar voto (${count}/${cfg.maxPicks})`;
   }
   if (bar) {
     bar.dataset.ready = count === cfg.maxPicks ? "1" : "0";
