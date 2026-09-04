@@ -51,15 +51,27 @@ function showLoginError(msg) {
 }
 
 async function tryUnlock(pin) {
-  const hash = await sha256Hex(pin.trim());
-  if (hash === cfg.adminPinHash) {
-    sessionStorage.setItem(AUTH_KEY, "1");
-    state.unlocked = true;
-    render();
-    return true;
+  showLoginError("");
+  if (!pin || !pin.trim()) {
+    showLoginError("Escribe el PIN.");
+    return false;
   }
-  showLoginError("PIN incorrecto.");
-  return false;
+  try {
+    const hash = await sha256Hex(pin.trim());
+    if (hash === cfg.adminPinHash) {
+      sessionStorage.setItem(AUTH_KEY, "1");
+      state.unlocked = true;
+      showLoginError("");
+      render();
+      return true;
+    }
+    showLoginError("PIN incorrecto.");
+    return false;
+  } catch (err) {
+    console.error(err);
+    showLoginError("No se pudo verificar el PIN en este navegador.");
+    return false;
+  }
 }
 
 function render() {
