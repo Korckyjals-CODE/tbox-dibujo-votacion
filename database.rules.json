@@ -1,0 +1,31 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "meta": {
+      ".read": true,
+      ".write": true
+    },
+    "votes": {
+      ".read": true,
+      "$voteId": {
+        ".write": "!data.exists() && root.child('meta/open').val() !== false",
+        ".validate": "newData.hasChildren(['picks', 'fp', 'ts']) && newData.child('fp').isString() && newData.child('fp').val().length > 8 && newData.child('ts').isNumber() && newData.child('picks').hasChildren(['0', '1', '2'])",
+        "picks": {
+          "$i": {
+            ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 37"
+          }
+        },
+        "fp": {
+          ".validate": "newData.isString()"
+        },
+        "ts": {
+          ".validate": "newData.isNumber()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

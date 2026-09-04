@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0a1628" />
+    <title>Admin · Votación TBox Primaria · ABC</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="admin-shell wrap">
+      <p class="brand" style="font-size: 1.6rem">ABC Bilingual School</p>
+      <h1 class="section-title">Administración de votación</h1>
+      <p class="section-sub">
+        Cierre de urnas y resultados del Certamen TBox — Primaria (Marte).
+        <a href="index.html">← Volver al sitio</a>
+      </p>
+
+      <div id="admin-config-banner" hidden role="status"></div>
+
+      <section id="admin-login" class="admin-card" aria-labelledby="login-title">
+        <h2 id="login-title" class="section-title">Acceso</h2>
+        <form id="pin-form">
+          <label for="pin-input">PIN de administrador</label>
+          <input
+            id="pin-input"
+            name="pin"
+            type="password"
+            inputmode="text"
+            autocomplete="current-password"
+            maxlength="12"
+            required
+            aria-describedby="login-error"
+          />
+          <p id="login-error" class="error-text" hidden></p>
+          <button type="submit" class="btn btn-primary" style="width: 100%">Entrar</button>
+        </form>
+      </section>
+
+      <section id="admin-panel" hidden>
+        <div class="admin-toolbar">
+          <span id="voting-status" data-open="1">Votación ABIERTA</span>
+          <button type="button" class="btn btn-danger" id="btn-close">Cerrar votación</button>
+          <button type="button" class="btn btn-ok" id="btn-open">Reabrir</button>
+          <button type="button" class="btn btn-secondary" id="btn-logout">Salir</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span>Boletas recibidas</span>
+            <strong id="total-ballots">0</strong>
+          </div>
+        </div>
+
+        <h2 class="section-title">Top 3</h2>
+        <div id="top3" class="winners-list" style="margin-bottom: 1.5rem"></div>
+
+        <h2 class="section-title">Conteo completo</h2>
+        <div style="overflow-x: auto">
+          <table class="tally-table">
+            <thead>
+              <tr>
+                <th>Dibujo</th>
+                <th>Votos</th>
+                <th>Barra</th>
+              </tr>
+            </thead>
+            <tbody id="tally-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script type="module">
+      async function loadFirebaseConfig() {
+        try {
+          const res = await fetch("firebase-config.js", { cache: "no-cache" });
+          if (!res.ok) throw new Error("missing");
+          const code = await res.text();
+          Function(code)();
+        } catch {
+          window.FIREBASE_CONFIG = null;
+        }
+      }
+      await loadFirebaseConfig();
+      await import("./js/admin.js");
+    </script>
+  </body>
+</html>
