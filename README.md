@@ -62,10 +62,17 @@ pero no hay conteo real entre teléfonos.
 
 Archivos clave:
 
-- `firebase-config.example.js` → cópialo a `firebase-config.js`
-- `database.rules.json` → súbelo a las reglas de RTDB
+- `firebase-config.example.js` → cópialo a `firebase-config.js` (local; **no** se sube a Git)
+- `database.rules.json` → súbelo a las reglas de RTDB (ahora deny-by-default / reposo)
 - `drawings/` + `drawings/manifest.json` → galería anónima
 
+### Seguridad / config de cliente
+
+La `apiKey` web de Firebase es normal en el navegador al desplegar, pero **no debe vivir en
+el árbol Git de un repo público**. Usa el example en local; la protección real son las
+**reglas RTDB** (+ restricciones HTTP-referrer opcionales en Google Cloud). Si hubo un alert
+de secret scanning, restringe o rota la key en Google Cloud Console — no se rota solo desde
+este repo. Detalle: **[SETUP.md](SETUP.md)**.
 ## Desarrollo local
 
 Sirve la carpeta raíz con cualquier servidor estático (módulos ES + `fetch`):
