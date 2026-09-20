@@ -2,8 +2,9 @@
  * Copia este archivo como firebase-config.js y pega los valores de tu proyecto Firebase.
  * Ver SETUP.md para los pasos exactos.
  *
- * firebase-config.js está en .gitignore — no lo subas con claves reales si no quieres.
- * Para GitHub Pages público, la apiKey del cliente es esperada (protegida por reglas RTDB).
+ * firebase-config.js está en .gitignore — no lo subas con claves reales a un repo público.
+ * La apiKey de cliente es esperada en el navegador al desplegar; la seguridad real está
+ * en las reglas RTDB (+ restricciones HTTP-referrer opcionales en Google Cloud).
  */
 window.FIREBASE_CONFIG = {
   apiKey: "TU_API_KEY",

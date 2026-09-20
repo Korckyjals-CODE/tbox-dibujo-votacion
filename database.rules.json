@@ -1,15 +1,9 @@
 {
+  // Dormant lockdown (app unused until possibly next year): deny-by-default.
+  // Do NOT reopen public .write on /meta or /votes without reviewing SETUP.md —
+  // restore voting rules carefully when the certamen is revived.
   "rules": {
-    "meta": {
-      ".read": true,
-      ".write": true
-    },
-    "votes": {
-      ".read": true,
-      "$voteId": {
-        ".write": "!data.exists() && root.child('meta/open').val() !== false",
-        ".validate": "newData.hasChildren(['picks', 'fp', 'ts']) && newData.child('fp').isString() && newData.child('ts').isNumber() && newData.child('picks').hasChildren()"
-      }
-    }
+    ".read": false,
+    ".write": false
   }
 }
